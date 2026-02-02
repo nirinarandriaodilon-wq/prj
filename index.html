@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Archives</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, sans-serif;
+            background-color: rgb(247, 247, 243);
+            font-size: small;
+        }
+        
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgb(2, 83, 78);
+            padding: 10px;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .year-buttons,
+        .activity-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        button {
+            padding: 8px 14px;
+            border: none;
+            background: #ddd;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        button.active {
+            background: #007bff;
+            color: white;
+        }
+        
+        .activity-buttons {
+            margin-top: 8px;
+        }
+        
+        .content {
+            margin-top: 78px;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: auto;
+            margin-top: 10px;
+        }
+        
+        table,
+        th,
+        td {
+            border: 1px solid #000;
+        }
+        
+        th,
+        td {
+            padding: 3px;
+        }
+        
+        th {
+            border: 1px solid #000;
+            text-align: center;
+            background: rgb(167, 170, 170);
+        }
+        
+        td.number {
+            text-align: center;
+        }
+        
+        td.total {
+            text-align: center;
+            background: rgb(167, 170, 170);
+        }
+        
+        .row {
+            display: flex;
+            gap: 130px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        
+        .side-image {
+            height: auto;
+            width: 70%;
+            max-width: 65%;
+            border-radius: 6px;
+        }
+        
+        img {
+            max-width: 100%;
+            margin-top: 10px;
+        }
+        
+        a.file-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007bff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        @media (max-width:600px) {
+            button {
+                font-size: 13px;
+                padding: 6px 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top-bar">
+
+        <div class="year-buttons" id="years">
+        </div>
+
+        <div class="activity-buttons" id="activities"></div>
+
+    </div>
+
+    <div class="content" id="content">
+        <!-- Contenu affiché ici -->
+    </div>
+
+    <script>
+        const years = [2024, 2025, 2026, 2027, 2028];
+
+        const activitiesByYear = {
+            2024: [
+                "Collecte Volontaires antennes",
+                "No information"
+            ],
+            2025: [
+                "Atelier EVCA",
+                "Validation données EVCA et cartographie de vulnerabilité",
+                "Formation des volontaires CRM sur le Changement climatique",
+                "Atelier elaboration PUC",
+                "Atelier validation PUC",
+                "Formation des olontaires facilitateurs de la formation ELS",
+                "Reunion elaboration PAP",
+                "Formation ELS"
+
+            ],
+            2026: [
+                "Activité A", "Activité B", "Activité C", "Activité D", "Activité E",
+                "Activité F", "Activité G", "Activité H", "Activité I", "Activité J"
+            ],
+            2027: [
+                "Activité 1", "Activité 2", "Activité 3", "Activité 4", "Activité 5",
+                "Activité 6", "Activité 7", "Activité 8", "Activité 9", "Activité 10"
+            ],
+            2028: [
+                "Activité 1", "Activité 2", "Activité 3", "Activité 4", "Activité 5",
+                "Activité 6", "Activité 7", "Activité 8", "Activité 9", "Activité 10"
+            ]
+        };
+
+        const contentData = {
+
+            "2024-0": `
+    <p>Reunion menée au niveau des 4 chefs lieu de district avec les membres CRM.</p>
+    <div class="row">
+    <table>
+      <tr><th>COMMUNE</th><th>Nbr FOKONTANY</th><th>Nbr ANTENNE</th></tr>
+      <tr><td>ANDREVOREVO</td><td class="number">5</td><td class="number">11</td></tr>
+      <tr><td>ANKARAMY BE</td><td class="number">9</td><td class="number">21</td></tr>
+      <tr><td>BEFOTAKA NORD</td><td class="number">15</td><td class="number">51</td></tr>
+      <tr><td>MAROMANDIA</td><td class="number">8</td><td class="number">25</td></tr>
+      <tr><td>MAROVANTAZA</td><td class="number">7</td><td class="number">23</td></tr>
+      <tr><td>AMBODIMADIRO </td><td class="number">2</td><td class="number">7</td></tr>
+      <tr><td>AMBODIMANDRESY </td><td class="number">3</td><td class="number">6</td></tr>
+      <tr><td>AMPANDRIKILANDY</td><td class="number">8</td><td class="number">24</td></tr>
+      <tr><td>ANDREBA</td><td class="number">1</td><td class="number">2</td></tr>
+      <tr><td>ANJIAMANGIRINA </td><td class="number">4</td><td class="number">9</td></tr>
+      <tr><td>ANKERIKA </td><td class="number">6</td><td class="number">18</td></tr>
+      <tr><td>ANTSAHABE</td><td class="number">8</td><td class="number">17</td></tr>
+      <tr><td>ANTSOHIHY</td><td class="number">3</td><td class="number">9</td></tr>
+      <tr><td>AMBOHITOAKA</td><td class="number">16</td><td class="number">47</td></tr>
+      <tr><td>MAMPIKONY I</td><td class="number">4</td><td class="number">12</td></tr>
+      <tr><td>MAMPIKONY II</td><td class="number">3</td><td class="number">9</td></tr>
+      <tr><td>AMPARIHY</td><td class="number">1</td><td class="number">3</td></tr>
+      <tr><td>PORT-BERGE II</td><td class="number">4</td><td class="number">12</td></tr>
+      <tr><td>TSARAHASINA</td><td class="number">2</td><td class="number">3</td></tr>
+      <tr><td class="total"><strong>TOTAL</strong></td><td class="total"><strong>109</strong></td><td class="total"><strong>309</strong></td></tr>
+        </table>
+
+    <img src="images/antenne.png" class="side-image">
+
+</div>
+<br>
+
+    <a class="file-link" href="Listedesantennes.xlsx" download>
+      Listedesantennes.xlsx
+    </a>
+  `,
+
+            "2024-1": `
+    <p>No information.</p>
+  `,
+            "2025-0": `
+    <p>d </p>Ateliers ménés dans les 18 chefs lieux de commune.
+    <div class="row">
+     <table>
+         <tr><th>DISTRICT</th><th>COMMUNE</th><th>Nbr FOKONTANY</th></tr>
+         <tr><td>ANALALAVA</td><td>ANKARAMY</td><td class="number">4</td></tr>
+         <tr><td>ANALALAVA</td><td>BEFOTAKA</td><td class="number">9</td></tr>
+     <tr><td>ANALALAVA</td><td>MAROMANDIA</td><td class="number">9</td></tr>
+     <tr><td>ANALALAVA</td><td>MAROVANTAZA</td><td class="number">6</td></tr>
+     <tr><td>ANTSOHIHY</td><td>AMBODIMADIRO</td><td class="number">7</td></tr>
+     <tr><td>ANTSOHIHY</td><td>AMBODIMANDRESY</td><td class="number">6</td></tr>
+     <tr><td>ANTSOHIHY</td><td>AMPANDRIAKILANDY</td><td class="number">6</td></tr>
+     <tr><td>ANTSOHIHY</td><td>ANDREBA</td><td class="number">8</td></tr>
+     <tr><td>ANTSOHIHY</td><td>ANJIAMANGIRANA</td><td class="number">6</td></tr>
+     <tr><td>ANTSOHIHY</td><td>ANKERIKA</td><td class="number">5</td></tr>
+     <tr><td>ANTSOHIHY</td><td>ANTSAHABE</td><td class="number">12</td></tr>
+     <tr><td>ANTSOHIHY</td><td>ANTSOHIHY</td><td class="number">7</td></tr>
+     <tr><td>MAMPIKONY</td><td>AMBOHITOAKA</td><td class="number">12</td></tr>
+     <tr><td>MAMPIKONY</td><td>MAMPIKONY1</td><td class="number">5</td></tr>
+     <tr><td>MAMPIKONY</td><td>MAMPIKONY2</td><td class="number">6</td></tr>
+     <tr><td>PORT BERGÉ</td><td>AMPARIHY</td><td class="number">5</td></tr>
+     <tr><td>PORT BERGÉ</td><td>PORT BERGÉ II</td><td class="number">8</td></tr>
+     <tr><td>PORT BERGÉ</td><td>TSARAHASINA</td><td class="number">6</td></tr>
+     <tr><td class="total"><strong>TOTAL</strong></td><td class="total"><strong>19</strong></td><td class="total"><strong>130</strong></td></tr>
+      </table>
+
+  <img src="images/ParticipantsEVCA.png" class="side-image">
+
+</div>
+<a class="file-link" href="CalendrierAtelierEVCA.xlsx" download>
+ CalendrierAtelierEVCA.xlsx
+</a><br>
+<a class="file-link" href="Liste130fktEVCA_2025.xlsx" download>
+ Liste130fktEVCA_2025.xlsx
+</a><br>
+<a class="file-link" href="OutilsEVCA.xlsx" download>
+ OutilsEVCA.xlsx
+</a><br>
+<a class="file-link" href="FanadihadianaEVCAMAJ13022025.docx" download>
+ FanadihadianaEVCAMAJ13022025.docx
+ </a><br>
+ <a class="file-link" href="SaisieInterviewEVCA.xlsx" download>
+ SaisieInterviewEVCA.xlsx
+</a><br>
+<a class="file-link" href="SaiseFlipEVCA_1ere vague.xlsx" download>
+ SaiseFlipEVCA_1ere_vague.xlsx
+</a><br>
+<a class="file-link" href="SaiseFlipEVCA_2eme vague.xlsx" download>
+ SaiseFlipEVCA_2eme_vague.xlsx
+</a><br>
+<a class="file-link" href="SaiseFlipEVCA_3eme vague.xlsx" download>
+ SaiseFlipEVCA_3eme_vague.xlsx
+</a>
+`,
+        };
+
+        const yearContainer = document.getElementById("years");
+        const activityContainer = document.getElementById("activities");
+        const contentBox = document.getElementById("content");
+
+        let selectedYear = null;
+
+        years.forEach(year => {
+            const btn = document.createElement("button");
+            btn.textContent = year;
+            btn.onclick = () => selectYear(btn, year);
+            yearContainer.appendChild(btn);
+        });
+
+        function selectYear(btn, year) {
+            clearActive(yearContainer);
+            btn.classList.add("active");
+
+            selectedYear = year;
+            activityContainer.innerHTML = "";
+            contentBox.innerHTML = "";
+
+            activitiesByYear[year].forEach((name, index) => {
+                const b = document.createElement("button");
+                b.textContent = name;
+                b.onclick = () => selectActivity(b, index);
+                activityContainer.appendChild(b);
+            });
+        }
+
+        function selectActivity(btn, index) {
+
+            clearActive(activityContainer);
+            btn.classList.add("active");
+
+            const key = selectedYear + "-" + index;
+
+            contentBox.innerHTML = contentData[key] ||
+                "<p>Aucun contenu pour cette activité.</p>";
+        }
+
+        function clearActive(container) {
+            [...container.children].forEach(b => b.classList.remove("active"));
+        }
+    </script>
+</body>
+
+</html>
+
+</html>
